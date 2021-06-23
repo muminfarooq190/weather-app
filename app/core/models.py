@@ -44,3 +44,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse('user:base')
+
+
+class City(models.Model):
+
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'cities'    
