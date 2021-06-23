@@ -37,7 +37,6 @@ class PublicUserTests(TestCase):
         create_user(**payload)
 
         res = self.client.post(CREATE_USER_URL, payload)
-        print(res.status_code)
         self.assertEqual(res.status_code, status.OK)
         self.assertEqual(get_user_model().objects.count(), 1)
 
