@@ -54,5 +54,9 @@ class ModelTests(TestCase):
     def test_city_str(self):
         """Test string represntation of city"""
         name = 'Las Vegas'
-        city = models.City.objects.create(name=name)
-        self.assertEqual(city.name, str(name))    
+        user = get_user_model().objects.create_user(
+            email='test@dev.com',
+            password='123456'
+        )
+        city = models.City.objects.create(name=name,user=user)
+        self.assertEqual(city.name, str(name))

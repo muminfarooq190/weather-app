@@ -3,6 +3,7 @@ from django.contrib.auth.models import(
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 from django.urls import reverse
+from django.conf import settings
 
 
 class MyUserManager(BaseUserManager):
@@ -49,9 +50,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 class City(models.Model):
 
     name = models.CharField(max_length=255)
-
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        default=settings.AUTH_USER_MODEL
+    )
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('user:base')    
+
     class Meta:
-        verbose_name_plural = 'cities'    
+        verbose_name_plural = 'cities'
