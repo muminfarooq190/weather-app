@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'welcome.html' %}
+
 {% block content %}
     <form method="POST" enctype="multipart/form-data">
 
@@ -8,6 +9,6 @@
     <!-- Using the formset -->
     {{ form.as_p }}
 
-    <input type="submit" value="Submit">
+    <input type="submit"  value="Add User">
 </form>
 {% endblock %}

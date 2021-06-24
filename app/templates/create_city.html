@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form class="" action="index.html" method="post">
-  {% csrf_token %}
-  {{form.as_p}}
+{% if not user.is_authenticated %}
+  <h1>Log in to add a city</h1>
+  {% else %}
+  <div class="row">
+    <h3>Add a City</h3>
+    </div>
+  <form method="POST">
+      {% csrf_token %}
+      <div class="field has-addons">
+          <div class="control is-expanded">
+              {{ form.name }}
+          </div>
+          <div class="control">
+              <button class="button is-info">
+                  Add City
+              </button>
+          </div>
+      </div>
+  </form>
+{% endif %}
 
-  <input type="submit" name="" value="ADD">
-</form>
 {% endblock %}

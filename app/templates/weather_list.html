@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>This is our list </h1>
+<div class="row">
+  <div class="column">
+    <h2>Your cities are</h2>
+  </div>
+  <div class="column">
+  <li class="city"><a href="{% url 'weather:create' %}">Add a City</a></li>
+  </div>
+</div>
+<div class="column is-offset-4 is-4">
 
+    {% for weather in weather_data %}
+    <div class="box">
+        <article class="media">
+         >>
+            <div class="media-left">
+                <figure class="image is-50x50">
+                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <span class="title">{{ weather.city }}</span>
+                        <br>
+                        <span class="subtitle">{{ weather.temperature }}° F</span>
+                        <br> {{ weather.description }}
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

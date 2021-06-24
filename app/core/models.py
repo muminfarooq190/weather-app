@@ -53,13 +53,13 @@ class City(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        default=settings.AUTH_USER_MODEL
+        
     )
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('user:base')    
+        return reverse('weather:list')
 
     class Meta:
         verbose_name_plural = 'cities'

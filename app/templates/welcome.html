@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+
+    <link rel="stylesheet" href="{% static 'css/master.css'%}">
+
+  </head>
+  <body>
+
+
+<div class="container">
+  <div class="row roww">
+    <div class="column">
+      <img style="height:30px;width:30px;"src="{% static 'images/day.png'%}" alt="">
+      <h3 class="ml15">
+<span class="word">Whats</span>
+<span class="word">Weather?</span>
+</h3>
+
+
+    </div>
+
+    <div class="column">
+      <ul class="nav">
+        {% if user.is_authenticated %}
+      
+        <li><a class="button-black button-outline button-clear" href="{% url 'user:logout' %}">Logout</a></li>
+          <li><a class="button-black button-outline button-clear" href="#">Search for a City</a></li>
+        {% else %}
+          <li class="list-item"><a class="button-black button-outline button-clear" href="{% url 'user:login' %}"><span>Login<span></a></li>
+        {% endif %}
+
+        <li class="list-register"><a class="button-black button-outline button-clear" href="{% url 'user:create'%}">Register</a></li>
+      </ul>
+    </div>
+
+    </div>
+
+{% block content %}
+<div class="wrapper">
+  <h3><em>Some amazing facts about our weather</em></h3>
+  <blockquote>
+     <p><em>The weather and climate are responsible for migration patterns in both humans and animals..</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>The weather can get wild in an instant, causing a lot of damage. Averagely, 100,000 people are killed in weather-related accidents every year.</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>There are about 8.6 million strikes of lightning every day. The perfect place to see lightning strikes is Lake Maracaibo in Venezuela</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>The wettest place on earth is Mawsynram, Meghalaya, India: The UK is known for many things, including the fact that it is almost ever rainy.</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em> The driest place on earth Antofagasta, Chile: In contrast, the driest place on earth is Antofagasta, Chile</em></p>
+  </blockquote>
+</div>
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}">
+
+</script>
+  </body>
+</html>
