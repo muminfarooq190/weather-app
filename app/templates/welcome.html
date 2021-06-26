@@ -28,14 +28,15 @@
     <div class="column">
       <ul class="nav">
         {% if user.is_authenticated %}
-      
+
         <li><a class="button-black button-outline button-clear" href="{% url 'user:logout' %}">Logout</a></li>
           <li><a class="button-black button-outline button-clear" href="#">Search for a City</a></li>
         {% else %}
           <li class="list-item"><a class="button-black button-outline button-clear" href="{% url 'user:login' %}"><span>Login<span></a></li>
+            <li class="list-register"><a class="button-black button-outline button-clear" href="{% url 'user:create'%}">Register</a></li>
         {% endif %}
 
-        <li class="list-register"><a class="button-black button-outline button-clear" href="{% url 'user:create'%}">Register</a></li>
+
       </ul>
     </div>
 

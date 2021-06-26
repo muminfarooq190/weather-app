@@ -1,7 +1,7 @@
 from django.views.generic import (
     CreateView, UpdateView, ListView, DeleteView
 )
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from core import models
 from .forms import UserCreationForm
@@ -17,7 +17,7 @@ class CreateUserView(View):
 
         if form.is_valid():
               form.save()
-
+              return redirect('user:login')
         return render(request, self.template_name, {'form': form})
     def get(self, request, *args, **kwargs):
         form = self.form_class()

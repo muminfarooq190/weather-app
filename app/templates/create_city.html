@@ -8,6 +8,7 @@
     <h3>Add a City</h3>
     </div>
   <form method="POST">
+    <div class="">
       {% csrf_token %}
       <div class="field has-addons">
           <div class="control is-expanded">
@@ -19,6 +20,8 @@
               </button>
           </div>
       </div>
+    </div>
+
   </form>
 {% endif %}
 

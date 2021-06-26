@@ -1,19 +1,21 @@
 {% extends 'welcome.html' %}
 {% block content %}
-
-
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                  {% if user.is_authenticated %}
-                    WELCOME {{user}}
-                  {% endif %}
-                </h1>
-            </div>
-        </div>
-    </section>
-    
-    {% endblock %}
-  </body>
-</html>
+<div class="wrapper">
+  <h3><em>Some amazing facts about our weather</em></h3>
+  <blockquote>
+     <p><em>The weather and climate are responsible for migration patterns in both humans and animals..</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>The weather can get wild in an instant, causing a lot of damage. Averagely, 100,000 people are killed in weather-related accidents every year.</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>There are about 8.6 million strikes of lightning every day. The perfect place to see lightning strikes is Lake Maracaibo in Venezuela</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em>The wettest place on earth is Mawsynram, Meghalaya, India: The UK is known for many things, including the fact that it is almost ever rainy.</em></p>
+  </blockquote>
+  <blockquote>
+     <p><em> The driest place on earth Antofagasta, Chile: In contrast, the driest place on earth is Antofagasta, Chile</em></p>
+  </blockquote>
+</div>
+{% endblock %}

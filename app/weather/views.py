@@ -6,6 +6,7 @@ from core import models
 from . import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 import requests
+from django.http import HttpResponse
 
 class ListWeatherView(ListView, LoginRequiredMixin):
     model = models.City
@@ -15,7 +16,7 @@ class ListWeatherView(ListView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=61e13877b69a6a3fc7f344384e9336fe'
 
-        cities = models.City.objects.all()
+        cities = models.City.objects.filter(user=self.request.user)
         weather_data = []
         for city in cities:
             city_weather = requests.get(url.format(city)).json()
@@ -30,10 +31,16 @@ class ListWeatherView(ListView, LoginRequiredMixin):
         context = {'weather_data' : weather_data}
         return context
 
-    queryset = models.City.objects.all()
 
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user).latest('id')
+
+    # def get_queryset(self):
+    #     try:
+    #         self.queryset = models.City.objects.all()
+    #         if self.queryset.exists():
+    #             return self.queryset.filter(user=self.request.user).latest('-id')
+    #     except (models.City.DoesNotExist):
+    #         pass
+
 
 class CreateCityView(CreateView, LoginRequiredMixin):
     form_class = forms.UserCreationForm
