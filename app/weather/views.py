@@ -7,6 +7,7 @@ from . import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 import requests
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 class ListWeatherView(ListView, LoginRequiredMixin):
     model = models.City
@@ -60,3 +61,34 @@ class CreateCityView(CreateView, LoginRequiredMixin):
 
 def welcome(request):
     return render(request, 'welcome.html')
+
+
+def getweatherofcity(city):
+    print("*********************", city)
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=61e13877b69a6a3fc7f344384e9336fe'
+    city_weather = requests.get(url.format(city)).json()
+     #request the API data and convert the JSON to Python data types
+    weather = {
+        'city' : city,
+        'temperature' : city_weather['main']['temp'],
+        'description' : city_weather['weather'][0]['description'],
+        'icon' : city_weather['weather'][0]['icon']
+    }
+    return weather
+
+
+
+@login_required
+def searchforcity(request):
+    form = forms.SearchForm()
+    if request.method == 'POST':
+        form = forms.SearchForm(request.POST)
+        if form.is_valid():
+            weather = getweatherofcity(request.POST.get("city"))
+            return render(request, 'city_info.html', {'weather':weather})
+        else:
+            if not request.POST.get('city').isdigit():
+                weather = getweatherofcity(request.POST.get("city"))
+                return render(request, 'city_info.html', {'weather':weather})
+            return HttpResponse("Your form is not valid")
+    return render(request, 'search_city.html',{'form':form})

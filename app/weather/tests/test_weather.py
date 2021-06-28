@@ -33,7 +33,7 @@ class WeatherAppTest(TestCase):
 
     def test_retrieve_city_successfull(self):
         """Retrieve the city"""
-
+        
         create_city(self.user)
         create_city(self.user)
         res = self.client.get(reverse('weather:list'))

@@ -5,5 +5,6 @@ app_name = 'weather'
 
 urlpatterns = [
     path('',views.ListWeatherView.as_view(), name='list'),
-    path('create/city/', views.CreateCityView.as_view(), name='create')
+    path('create/city/', views.CreateCityView.as_view(), name='create'),
+    path('search/city/',views.searchforcity, name='search')
 ]
